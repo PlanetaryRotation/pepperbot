@@ -1,0 +1,9 @@
+.env 
+src/logs
+node_modules/
+src/commands/cbrowser.js
+src/commands/cbrowser.disabled
+data/
+logs/
+transfer/
+resources/
