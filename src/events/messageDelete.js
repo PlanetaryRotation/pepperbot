@@ -1,4 +1,5 @@
 import { default as log } from "../util/log.js";
+import fs from "fs"
 
 export default function (message) {
   try {
@@ -9,19 +10,8 @@ export default function (message) {
       `deleted message from ${message.author.username} (${message.author}) with: "${message.content}"`,
       true
     );
-  } catch {
-    function sendError(message) {
-      const channel = client.channels.cache.get("1148814162273763418");
-      let msg;
-      try {
-        msg = channel.send(`**error:** ${message}`);
-      } catch (err) {
-        sendError(err.rawError.message);
-        console.log(err);
-        return undefined;
-      }
-      return msg;
-    }
-    sendError("undefined error");
+    fs.writeFileSync(`./logs/deletedmessages/${message.guild.id}.log`, message.content)
+  } catch (err) {
+    console.log(err.slice(0, 2000))
   }
 }
