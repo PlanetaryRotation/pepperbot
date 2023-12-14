@@ -34,6 +34,10 @@ client.on("interactionCreate", (interaction) => {
   events.interactionCreate(interaction);
 });
 
+client.on("voiceStateUpdate", (oldState, newState) => {
+  events.voiceStateUpdate(oldState, newState);
+});
+
 register();
 
 client.login(process.env.TOKEN);
