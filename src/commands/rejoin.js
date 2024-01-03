@@ -9,6 +9,7 @@ module.exports = {
         if (connection) {
             try {
                 connection.rejoin()
+                action.reply(message, "reinstated voice connection")
             } catch (err) {
                 action.sendError(err)
             }
