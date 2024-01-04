@@ -9,30 +9,35 @@ export default {
       action.reply(message, "cache types: client, guild");
       return;
     }
+    let msg
+    let clientCaches = {
+        "users": message.client.users.cache,
+        "uptime": message.client.uptime,
+        "guilds": message.client.guilds.cache,
+        "emojis": message.client.emojis.cache,
+        "channels": message.client.channels.cache
+    }
+    let guildCaches = {
+        "bans": message.guild.bans.cache,
+        "channels": message.guild.channels.cache,
+        "commands": message.guild.commands.cache,
+        "emojis": message.guild.emojis.cache,
+        "explicitContentFilter": message.guild.explicitContentFilter,
+        "features": message.guild.features,
+        "members": message.guild.members.cache,
+        "preferredLocale": message.guild.preferredLocale,
+        "presences": message.guild.presences.cache,
+        "stageInstances": message.guild.stageInstances.cache,
+        "stickers": message.guild.stickers.cache,
+        "scheduledEvents": message.guild.scheduledEvents.cache,
+        "roles": message.guild.roles.cache
+    }
     if (args[0] === "client") {
         if (args[1] === "help") {
             action.reply(message, "client caches: users, uptime, guilds, emojis, channels");
             return;
-        }
-        if (args[1] === "user") {
-            action.reply(message, message.client.users.cache);
-            return;
-        }
-        if (args[1] === "uptime") {
-            action.reply(message, message.client.uptime);
-            return;
-        }
-        if (args[1] === "guilds") {
-            action.reply(message, message.client.guilds.cache);
-            return;
-        }
-        if (args[1] === "emojis") {
-            action.reply(message, message.client.emojis.cache);
-            return;
-        }
-        if (args[1] === "channels") {
-            action.reply(message, message.client.channels.cache);
-            return;
+        } else {
+            msg = clientCaches[args[1]]
         }
     }
     if (args[0] === "guild") {
@@ -40,59 +45,10 @@ export default {
         if (args[1] === "help") {
             action.reply(message, "guild caches: bans, channels, commands, emojis, explicitContentFilter, features, members, preferredLocale, presences, stageInstances, stickers, scheduledEvents, roles");
             return;
-        }
-        if (args[1] === "bans") {
-            action.reply(message, guild.bans.cache);
-            return;
-        }
-        if (args[1] === "channels") {
-            action.reply(message, guild.channels.cache);
-            return;
-        }
-        if (args[1] === "commands") {
-            action.reply(message, guild.commands.cache);
-            return;
-        }
-        if (args[1] === "emojis") {
-            action.reply(message, guild.emojis.cache);
-            return;
-        }
-        if (args[1] === "explicitContentFilter") {
-            action.reply(message, guild.explicitContentFilter.cache);
-            return;
-        }
-        if (args[1] === "features") {
-            action.reply(message, guild.features);
-            return;
-        }
-        if (args[1] === "members") {
-            action.reply(message, guild.members.cache);
-            return;
-        }
-        if (args[1] === "preferredLocale") {
-            action.reply(message, guild.preferredLocale);
-            return;
-        }
-        if (args[1] === "presences") {
-            action.reply(message, guild.presences.cache);
-            return;
-        }
-        if (args[1] === "stageInstances") {
-            action.reply(message, guild.stageInstances.cache);
-            return;
-        }
-        if (args[1] === "stickers") {
-            action.reply(message, guild.stickers.cache);
-            return;
-        }
-        if (args[1] === "scheduledEvents") {
-            action.reply(message, guild.scheduledEvents.cache);
-            return;
-        }
-        if (args[1] === "roles") {
-            action.reply(message, guild.roles.cache);
-            return;
+        } else {
+            msg = guildCaches[args[1]]
         }
     }
+    action.reply(message, msg)
   },
 };
