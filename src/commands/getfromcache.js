@@ -12,14 +12,14 @@ export default {
         return;
     }
     let msg
-    let clientCaches = {
+    const clientCaches = {
         "users": message.client.users.cache,
         "uptime": message.client.uptime,
         "guilds": message.client.guilds.cache,
         "emojis": message.client.emojis.cache,
         "channels": message.client.channels.cache
     }
-    let guildCaches = {
+    const guildCaches = {
         "bans": message.guild.bans.cache,
         "channels": message.guild.channels.cache,
         "commands": message.guild.commands.cache,
