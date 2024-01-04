@@ -20,10 +20,10 @@ export function sendError(message) {
   const channel = client.channels.cache.get("1148814162273763418");
   let msg;
   try {
-    msg = channel.send(`**error:** ${message}`);
+    msg = channel.send(`**error:** ${message}
+<@440163494529073152> you fucked something`);
     console.log(message);
   } catch (err) {
-    sendError(err.rawError.message);
     console.log(err);
     return undefined;
   }

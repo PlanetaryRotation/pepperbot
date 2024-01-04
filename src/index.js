@@ -23,7 +23,7 @@ client.on("guildMemberAdd", (member) => {
 });
 
 client.on("messageDelete", async (message) => {
-  events.messageDelete(message);
+  events.messageDelete(message, client);
 });
 
 client.on("messageCreate", async (message) => {
@@ -31,13 +31,12 @@ client.on("messageCreate", async (message) => {
 });
 
 client.on("interactionCreate", (interaction) => {
-  events.interactionCreate(interaction);
+  events.interactionCreate(interaction, client);
 });
 
 client.on("voiceStateUpdate", (oldState, newState) => {
-  events.voiceStateUpdate(oldState, newState);
+  events.voiceStateUpdate(oldState, newState, client);
 });
 
 register();
-
 client.login(process.env.TOKEN);

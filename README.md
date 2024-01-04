@@ -17,6 +17,12 @@ clean up p/vileimagery, its horrendous
 
 **_Note:_** _versions before this were not uploaded to the repo, this is not the first version._
 
+    1.15 - added p/recent and p/rejoin, p/recent sends the most recently deleted message, p/rejoin calls rejoin function on voice connections. also added some broken code for a voiceStateUpdate event but im too lazy to fix it so ill do that basically never. also deleted some useless line from .gitignore
+    1.15.1 - fixed exploit with recursive p/recents
+    1.15.2 - fixed voiceStateUpdate event, also errors now ping me (please don't abuse i will disable it if you do)
+
+---
+
     1.14 - added announcement system, bug fixes
 
 ---

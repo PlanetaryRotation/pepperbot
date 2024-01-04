@@ -30,7 +30,8 @@ export default {
         filename.endsWith(".ogg") ||
         filename.endsWith(".webm") ||
         filename.endsWith(".m4a") ||
-        filename.endsWith(".mp4")
+        filename.endsWith(".mp4") ||
+        filename.endsWith(".midi")
       ) {
         const filenameNoExtension = filename.split(".")[0];
         const files = fs.readdirSync("resources/soundboard");

@@ -36,6 +36,8 @@ export default {
       webm: proposedfilename + ".webm",
       spacedm4a: proposedfilename.replaceAll(" ", "_") + ".m4a",
       m4a: proposedfilename + ".m4a",
+      spacedmp4: proposedfilename.replaceAll(" ", "_") + ".mp4",
+      mp4: proposedfilename + ".mp4",
     };
     for (const value of Object.values(possibleFilenames)) {
       if (files.includes(value)) {
