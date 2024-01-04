@@ -3,13 +3,13 @@ import fs from "fs"
 import fsextra from "fs-extra"
 
 export default {
-  name: "getfromcache",
-  description: "gets a value from the bot's cache, please know this is going to cause a lot of issues and will take a while to fix",
-  arguments: "cache type, subtype, etc. type help at any time for more info",
-  execute(message, args) {
+    name: "getfromcache",
+    description: "gets a value from the bot's cache, please know this is going to cause a lot of issues and will take a while to fix",
+    arguments: "cache type, subtype, etc. type help at any time for more info",
+    execute(message, args) {
     if (args[0] === "help") {
-      action.reply(message, "cache types: client, guild");
-      return;
+        action.reply(message, "cache types: client, guild");
+        return;
     }
     let msg
     let clientCaches = {
@@ -36,16 +36,23 @@ export default {
     }
     if (args[0] === "client") {
         if (args[1] === "help") {
-            action.reply(message, "client caches: users, uptime, guilds, emojis, channels");
+            let text = ""
+            for (const [key, value] of Object.entries(clientCaches)) {
+                text += `${key} `
+            }
+            action.reply(message, text);
             return;
         } else {
             msg = clientCaches[args[1]]
         }
     }
     if (args[0] === "guild") {
-        const guild = message.guild
         if (args[1] === "help") {
-            action.reply(message, "guild caches: bans, channels, commands, emojis, explicitContentFilter, features, members, preferredLocale, presences, stageInstances, stickers, scheduledEvents, roles");
+            let text = ""
+            for (const [key, value] of Object.entries(guildCaches)) {
+                text += `${key} `
+            }
+            action.reply(message, text);
             return;
         } else {
             msg = guildCaches[args[1]]
@@ -55,11 +62,10 @@ export default {
     fs.writeFileSync("../pepperbot/getcachecontainer.json", msg)
     action.reply(message, {
         files: [
-          {
-            attachment: "../pepperbot/getcachecontainer.json",
-            name: "cache.json",
-          },
+            {
+                attachment: "../pepperbot/getcachecontainer.json",
+                name: "cache.json",
+            },
         ],
-      })
-  },
+    })},
 };
