@@ -1,4 +1,6 @@
 import * as action from "../util/discordAction.js";
+import fs from "fs"
+import fsextra from "fs-extra"
 
 export default {
   name: "getfromcache",
@@ -49,6 +51,15 @@ export default {
             msg = guildCaches[args[1]]
         }
     }
-    action.reply(message, msg)
+    fsextra.ensureFileSync("../pepperbot/getcachecontainer.json")
+    fs.writeFileSync("../pepperbot/getcachecontainer.json", msg)
+    action.reply(message, {
+        files: [
+          {
+            attachment: "../pepperbot/getcachecontainer.json",
+            name: "cache.json",
+          },
+        ],
+      })
   },
 };
