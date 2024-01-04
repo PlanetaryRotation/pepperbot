@@ -38,7 +38,7 @@ export default {
     if (args[0] === "guild") {
         const guild = message.guild
         if (args[1] === "help") {
-            action.reply(message, "guild caches: bans, channels, commands, emojis, explicitContentFilter, features, members, preferredLocale, presences, stageInstances, stickers");
+            action.reply(message, "guild caches: bans, channels, commands, emojis, explicitContentFilter, features, members, preferredLocale, presences, stageInstances, stickers, scheduledEvents, roles");
             return;
         }
         if (args[1] === "bans") {
@@ -83,6 +83,14 @@ export default {
         }
         if (args[1] === "stickers") {
             action.reply(message, guild.stickers.cache);
+            return;
+        }
+        if (args[1] === "scheduledEvents") {
+            action.reply(message, guild.scheduledEvents.cache);
+            return;
+        }
+        if (args[1] === "roles") {
+            action.reply(message, guild.roles.cache);
             return;
         }
     }
