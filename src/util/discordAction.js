@@ -4,10 +4,24 @@ import * as index from "../index.js";
 import { IntegrationExpireBehavior } from "discord.js";
 const client = index.client;
 
+const bannedWords = {
+  "@everyone": "@ everyone",
+  "@here": "@ here"
+};
+
+export function checkMessage(message) {
+  var correctedMessage = message
+  for (const [word, replacement] of bannedWords) {
+    correctedMessage = correctedMessage.replace(word, replacement);
+  }
+  return correctedMessage
+}
+
 export async function sendMainMessage(message) {
   try {
+    var newMessage = checkMessage(message)
     const channel = client.channels.cache.get("1148814162273763418");
-    const msg = await channel.send(message);
+    const msg = await channel.send(newMessage);
     return msg;
   } catch (err) {
     sendError(toString(err).slice(err.length - 1750, err.length));
@@ -59,7 +73,8 @@ export async function sendMessage(channelId, message) {
   let msg;
   if (channel) {
     try {
-      msg = await channel.send(message);
+      var newMessage = checkMessage(message)
+      msg = await channel.send(newMessage);
       return msg;
     } catch (err) {
       sendError(err.rawError.message);
@@ -73,7 +88,8 @@ export async function sendMessage(channelId, message) {
 
 export async function reply(triggerMessage, message) {
   try {
-    let msg = await triggerMessage.reply(message);
+    var newMessage = checkMessage(message)
+    let msg = await triggerMessage.reply(newMessage);
     return msg;
   } catch (err) {
     sendError(err.rawError.message);
@@ -94,7 +110,8 @@ export function createEmbed() {
 
 export function edit(message, newcontent) {
   try {
-    message.edit(newcontent);
+    var newMessage = checkMessage(newcontent)
+    message.edit(newMessage);
   } catch (err) {
     console.log(typeof message.edit);
     sendError(err);
